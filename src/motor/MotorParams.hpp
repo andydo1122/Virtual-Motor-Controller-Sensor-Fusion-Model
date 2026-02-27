@@ -7,7 +7,8 @@
 #define MOTOR_PARAMS_HPP
 
 // Motor constants (placeholder values)
-static constexpr double MOTOR_KT      = 0.1;   // torque constant
-static constexpr double MOTOR_INERTIA = 0.01; // inertia
+static constexpr double MOTOR_KT       = 0.1;   // torque constant
+static constexpr double MOTOR_INERTIA  = 0.01;  // inertia
+static constexpr double MOTOR_FRICTION = 0.001; 
 
 #endif // MOTOR_PARMS_HPP
