@@ -22,6 +22,8 @@ public:
     Motor_Model();
     Motor_Model& operator=(const Motor_Model&) = default; 
 
+    static Motor_Model instance(); 
+
     // Procedures //
     void update(double dt);
     void apply_voltage(double voltage);

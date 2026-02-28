@@ -15,6 +15,12 @@ Motor_Model::Motor_Model() :
 
 }
 
+static Motor_Model instance()
+{
+    Motor_Model instance;
+    return instance;
+}
+
 void Motor_Model::apply_voltage(double voltage)
 {
     voltage_input = voltage;
@@ -45,6 +51,16 @@ void Motor_Model::update(double dt)
     // Update
     angular_velocity += accel * dt;
     angular_position += angular_velocity * dt;
+}
+
+double Motor_Model::get_velocity() const
+{
+    return angular_velocity;
+}
+    
+double Motor_Model::get_position() const
+{
+    return angular_position;
 }
 
 } // namespace Motor
