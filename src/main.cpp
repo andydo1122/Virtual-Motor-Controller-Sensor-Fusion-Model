@@ -3,8 +3,12 @@
 // initialize and demonstrate firmware loop.
 //////////////////////////////////////////////
 
-// int main()
-// {
+#include <iostream>
+
+int main()
+{
+
+// WHEN EVERYTHING IS IMPLEMENTED...
 //     Scheduler scheduler(1); 
 
 //     MotorModel motor;
@@ -31,4 +35,6 @@
 //     });
 
 //     scheduler.run();
-// }
+
+    return 0;
+}
