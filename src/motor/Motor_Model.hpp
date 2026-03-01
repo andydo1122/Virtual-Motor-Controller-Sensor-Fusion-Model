@@ -25,8 +25,8 @@ public:
     static Motor_Model instance(); 
 
     // Procedures //
-    void update(double dt);
-    void apply_voltage(double voltage);
+    void update(double p_dt);
+    void apply_voltage(double p_voltage);
 
     // Getters //
     double get_velocity() const;

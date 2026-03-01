@@ -21,12 +21,12 @@ static Motor_Model instance()
     return instance;
 }
 
-void Motor_Model::apply_voltage(double voltage)
+void Motor_Model::apply_voltage(double p_voltage)
 {
-    voltage_input = voltage;
+    voltage_input = p_voltage;
 }
 
-void Motor_Model::update(double dt)
+void Motor_Model::update(double p_dt)
 {
 
     // Torque Physics //
@@ -49,8 +49,8 @@ void Motor_Model::update(double dt)
     // Torque Physics //
     
     // Update
-    angular_velocity += accel * dt;
-    angular_position += angular_velocity * dt;
+    angular_velocity += accel * p_dt;
+    angular_position += angular_velocity * p_dt;
 }
 
 double Motor_Model::get_velocity() const
