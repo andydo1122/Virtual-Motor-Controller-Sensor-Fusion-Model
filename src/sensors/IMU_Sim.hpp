@@ -1,5 +1,6 @@
 //////////////////////////////////////////////
 // IMU_SIM_HPP
+// A Inertial Measurement Unit
 // Generating acceleration and gyro data.
 // Helps with testing sensor fusion algorithms.
 //////////////////////////////////////////////
