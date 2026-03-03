@@ -19,7 +19,7 @@ public:
     explicit Noise(double p_stddev);
     Noise& operator=(const Noise&) = default;
 
-    static Noise instance();
+    static Noise instance(double p_stddev);
 
     // Procedures //
     double sample();
@@ -31,6 +31,8 @@ private:
     static constexpr double       LCG_NORMALIZER = 32767.0; 
 
     // Attributes //
+    
+    // standard dev
     double stddev;
     unsigned int seed; 
 

@@ -13,6 +13,12 @@ Noise::Noise(double p_stddev) :
 {
 }
 
+Noise Noise::instance(double p_stddev)
+{
+    Noise instance(p_stddev);
+    return instance;
+}
+
 double Noise::sample()
 {
     // Simple uniform noise placeholder

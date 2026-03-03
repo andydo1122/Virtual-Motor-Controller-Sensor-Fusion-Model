@@ -27,3 +27,21 @@ For 32767: This is the maximum value of 15 bit integer. Allows LCG to extract 15
 - Bias dift
 - Axis misalignment
 
+## Improving Accelerometer
+Eventually, we can advance the accelerometer to use equation:
+
+$a = r \cdot a` + r \cdot w^{2}$
+
+where:
+
+$a$ = linear acceleration
+
+$r$ = distance from rotation axis
+
+$a`$ = angular acceleration
+
+$w$ = angular velocity
+
+
+
+

@@ -10,9 +10,9 @@
 
 #include <iostream>
 #include "Noise.hpp"
-
 namespace Sensors
 {
+
 class IMU_Sim
 {
 public:
@@ -33,8 +33,11 @@ public:
 private:
     double angle;
     double gyro;
+
+    // accelerometer
     double accel;
-    // Noise noise_generator; // TODO: Implement later. 
+
+    Noise noise_generator;  
 
 };
 
