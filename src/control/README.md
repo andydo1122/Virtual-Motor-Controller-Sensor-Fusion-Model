@@ -22,3 +22,16 @@ SIDE NOTE: PID needs to eventually reset because too much accumated errors and s
 Plays a key role when simulating angle estimation, orientation drift correction, accelerometer and gyro fusion.
 
 This all will be needed when I want to simulate a rotating IMU, gravity vector, tilt estimation, and attitude control.
+
+In terms of definition, is used to estimate a variable by combining two or more measurements that have different noise characteristics. 
+
+Formula for Complementary filter is expressed as:
+
+$z = a \cdot x + (1 - a) \cdot y$
+
+$a$ = weighting factor that determines the contribution of each sensor.
+
+
+$x, y$ = Represents measurements of the same quantity from different sensors. in our case, gyro angle and accelerometer angle, respectively. 
+
+$z$ = estimated angle

@@ -14,7 +14,7 @@ namespace Control
 class PID
 {
 public:
-    // Constructor
+    // Constructor //
     PID(double p_kp, double p_ki, double p_kd,
         double p_output_min, double p_output_max);
     PID& operator=(const PID&) = default;
@@ -22,7 +22,7 @@ public:
     static PID instance(double p_kp, double p_ki, double p_kd, 
         double p_output_min, double p_output_max);
 
-    // Procedures
+    // Procedures //
     double update(double p_error, double p_dt);
     void reset();
 
