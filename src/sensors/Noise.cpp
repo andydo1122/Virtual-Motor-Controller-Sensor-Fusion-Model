@@ -1,5 +1,5 @@
 //////////////////////////////////////////////
-// Noise.hpp
+// Noise.cpp
 //////////////////////////////////////////////
 
 #include "Noise.hpp"
@@ -15,7 +15,7 @@ Noise::Noise(double p_stddev) :
 
 Noise Noise::instance(double p_stddev)
 {
-    Noise instance(p_stddev);
+    static Noise instance(p_stddev);
     return instance;
 }
 
