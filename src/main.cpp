@@ -23,7 +23,7 @@ const double TARGET_SPEED = 100.0; // rad/s
 for(int i = 0; i < 5000; ++i)
 {
     motor.update(DELTA_TIME);
-    imu.update(motor.get_velocity());
+    imu.update(motor.get_velocity(), DELTA_TIME);
 
     double current_speed = imu.get_gyro(); // gyro is equivalent to angular velocity
     double error = TARGET_SPEED - current_speed; 

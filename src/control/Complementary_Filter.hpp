@@ -18,7 +18,7 @@ public:
     explicit Complementary_Filter(double p_alpha);
     Complementary_Filter& operator=(const Complementary_Filter&) = default;
 
-    static Complementary_Filter instance(double p_alpha);
+    static Complementary_Filter& instance(double p_alpha);
 
     // Procedures //
     double update(double p_accel_angle, double p_gyro_rate, double p_dt);

@@ -15,7 +15,7 @@ Motor_Model::Motor_Model() :
 
 }
 
-Motor_Model Motor_Model::instance()
+Motor_Model& Motor_Model::instance()
 {
     static Motor_Model instance;
     return instance;

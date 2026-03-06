@@ -19,7 +19,7 @@ public:
         double p_output_min, double p_output_max);
     PID& operator=(const PID&) = default;
 
-    static PID instance(double p_kp, double p_ki, double p_kd, 
+    static PID& instance(double p_kp, double p_ki, double p_kd, 
         double p_output_min, double p_output_max);
 
     // Procedures //

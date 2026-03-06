@@ -42,6 +42,28 @@ $a`$ = angular acceleration
 
 $w$ = angular velocity
 
+We'll need the core accelerometer physics firsts, thus we'll need Tangential Acceleration : 
+
+$a_{t} = r * a$ 
+
+where $r$ is distance from rotation axis to IMU. While $a$ is angular acceleration (change in angular velocity)
+
+We'll also need centripetal acceleration: 
+
+$a_{c} = r \cdot w^2$. 
+
+Always directed toward center of rotation.
+
+Gravity projection is needed:
+
+$a_{g} = g \cdot$ (projection onto IMU axis).
+
+Combining them all:
+
+$a_{true} = a_t + a_c + a_g$
+
+Gives meaningful signal for our complementary filter. 
+
 
 
 
