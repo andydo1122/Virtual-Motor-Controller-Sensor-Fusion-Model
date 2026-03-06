@@ -64,6 +64,8 @@ $a_{true} = a_t + a_c + a_g$
 
 Gives meaningful signal for our complementary filter. 
 
+03/06/26: Currently, this assuming that my IMU axis is aligned with gravity and gravity is positive along that axis. Need to later get an actual gravity prjection, orientation matrix, and 3-axis accelerometer.
+
 
 
 
