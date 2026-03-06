@@ -12,7 +12,7 @@ Complementary_Filter::Complementary_Filter(double p_alpha) :
 {
 }
 
-Complementary_Filter Complementary_Filter::instance(double p_alpha)
+Complementary_Filter& Complementary_Filter::instance(double p_alpha)
 {
     static Complementary_Filter instance(p_alpha);
     return instance; 

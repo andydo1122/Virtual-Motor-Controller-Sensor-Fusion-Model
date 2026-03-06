@@ -19,7 +19,7 @@ PID::PID(double p_kp, double p_ki, double p_kd,
 
 }
 
-PID PID::instance(double p_kp, double p_ki, double p_kd, 
+PID& PID::instance(double p_kp, double p_ki, double p_kd, 
     double p_output_min, double p_output_max)
 {
     static PID instance(p_kp, p_ki, p_kd, 

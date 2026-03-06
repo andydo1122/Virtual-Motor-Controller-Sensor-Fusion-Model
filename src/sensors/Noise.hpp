@@ -19,7 +19,7 @@ public:
     explicit Noise(double p_stddev);
     Noise& operator=(const Noise&) = default;
 
-    static Noise instance(double p_stddev);
+    static Noise& instance(double p_stddev);
 
     // Procedures //
     double sample();
