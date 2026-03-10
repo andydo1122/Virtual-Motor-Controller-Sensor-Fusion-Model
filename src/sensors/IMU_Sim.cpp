@@ -4,6 +4,7 @@
 //////////////////////////////////////////////
 
 #include "IMU_Sim.hpp"
+#include "control/Complementary_Filter.hpp"
 #include <cmath>
 namespace Sensors
 {
@@ -12,7 +13,8 @@ IMU_Sim::IMU_Sim() :
     gyro(0.0),
     prev_angular_vel(0.0),
     accel(0.0),
-    noise_generator(Noise::instance(0.01))
+    noise_generator(Noise::instance(0.01)),
+    its_complementary_filter(&Control::Complementary_Filter::instance(0.5))
 {
 }
 
@@ -35,13 +37,21 @@ void IMU_Sim::update(double p_angular_velocity, double p_dt)
     tangential_acceleration  = IMU_RADIUS * angular_acceleration;
     centripetal_acceleration = IMU_RADIUS * pow(p_angular_velocity, 2); 
 
+    // Compute Accelerometer - derived angle
+    double accel_angle = std::atan2(tangential_acceleration + centripetal_acceleration,
+        EARTH_GRAVITY);
+
     // Gyro reading
     gyro = p_angular_velocity + noise_generator.sample();
     
-    // Integrate angle using dt
-    angle += gyro * p_dt;
+    // pass in gyro and angular accelerometer to update angle estimation 
+    // Fuse Complementary Filter
+    its_complementary_filter->update(accel_angle, gyro, p_dt);
+
+    // Integrate angle 
+    angle = its_complementary_filter->get_angle();
     
-    // Accelerometer reading
+    // Compute Accelerometer reading
     accel = tangential_acceleration + centripetal_acceleration + EARTH_GRAVITY 
         + noise_generator.sample(); 
 

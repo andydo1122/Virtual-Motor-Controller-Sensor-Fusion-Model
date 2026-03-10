@@ -21,7 +21,13 @@ public:
     static Complementary_Filter& instance(double p_alpha);
 
     // Procedures //
-    double update(double p_accel_angle, double p_gyro_rate, double p_dt);
+    void update(double p_accel_angle, double p_gyro_rate, double p_dt);
+
+    // Reset our angle.
+    void reset();
+    
+    // Getters //
+    double get_angle() const;
 
 private:
     double alpha;

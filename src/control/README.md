@@ -50,11 +50,11 @@ $\theta_{acc}$ = angle computed from accelerometer
 
 $a$ = how much trust in gyro
 
-$1 - a$ = how much turst in accelerometer.
+$1 - a$ = how much trust in accelerometer.
 
 ## More on $a$, trust in gyro vs. accelerometer
 
-$a$ close to 1.0 means more trust in gyro. Can be smooth, responsive, but difts
+$a$ close to 1.0 means more trust in gyro. Can be smooth, responsive, but drifts
 
-$1 - a$ close to 0.0 means more trust. Can have no drift, but noisy. 
+$1 - a$ close to 0.0 means more trust in accelerometer. Can have no drift, but noisy. 
 

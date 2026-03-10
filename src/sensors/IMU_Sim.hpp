@@ -10,9 +10,14 @@
 
 #include <iostream>
 #include "Noise.hpp"
+
+namespace Control
+{
+class Complementary_Filter; 
+}
+
 namespace Sensors
 {
-
 class IMU_Sim
 {
 public:
@@ -41,10 +46,12 @@ private:
     // accelerometer
     double accel;
 
-    Noise noise_generator;  
+    Noise noise_generator;
+
+    // Associations //
+    Control::Complementary_Filter* its_complementary_filter;
 
 };
-
 }
 
 #endif // IMU_SIM_HPP
