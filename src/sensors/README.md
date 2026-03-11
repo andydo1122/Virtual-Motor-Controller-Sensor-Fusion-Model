@@ -64,7 +64,26 @@ $a_{true} = a_t + a_c + a_g$
 
 Gives meaningful signal for our complementary filter. 
 
-03/06/26: Currently, this assuming that my IMU axis is aligned with gravity and gravity is positive along that axis. Need to later get an actual gravity prjection, orientation matrix, and 3-axis accelerometer.
+## 03/06/26: 
+
+Currently, this is assuming that my IMU axis is aligned with gravity and gravity is positive along that axis. Need to later get:
+- gravity prjection
+- orientation matrix 
+- and 3-axis accelerometer.
+
+## 03/09/26:
+
+Calculating 1-axis IMU rotating in a plane, the accelerometer angle is:
+
+$\theta_{acc} = arctan2(a_t, a_g)$.
+
+We'll need this since I'm integrating with my Complementary Filter for the IMU_Sim and I need to get the derived angular accelerometer.
+
+Next step: need to give IMU_Sim to tune alpha (weight factor) for Complementary Filter. And finally test with the loop.
+
+## 03/10/26: 
+
+Since my accelerometer is using centripetal acceleration without dealing 3-axis rotations, my accelerometer angle is corrupted at higher speeds. For now, start with 30 and test results.
 
 
 

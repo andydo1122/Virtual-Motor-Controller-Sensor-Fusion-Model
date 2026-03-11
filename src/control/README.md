@@ -1,11 +1,17 @@
 # PID (Proportional Integral Derivative controller)
 Control mechanism, helps in maintaining desired output by continuously adjusting inputs based on error between current state and target state.
 
-$K_p$ = proportional
+$K_p$ = proportional gain
 
-$K_i$ = integral
+This is the muscle of the controller, pushing the motor toward target speed. For now, 0.5 is considered strong enough to accelerate motor but not strong to cause it to overshoot. 
 
-$K_d$ = derivative
+$K_i$ = integral gain
+
+Integral gain removes steady-state error or long-term correction. If we use 0.1, it's small enough to avoid windup, slowly corrects any remaining error, doesn't dominate my controller and works with 1 m/s timestep. If we went too high like 0.5, we'll see oscillation and slow recovery after saturation.
+
+$K_d$ = derivative gain
+
+This gain is our shock absorber, dampening our system. 0.01 is used because my current motor is simple. Too much will amplify noise; thus, a small value derivative helps smooth response without causing jitter. 
 
 All three are tuning parameters.
 
@@ -50,11 +56,11 @@ $\theta_{acc}$ = angle computed from accelerometer
 
 $a$ = how much trust in gyro
 
-$1 - a$ = how much turst in accelerometer.
+$1 - a$ = how much trust in accelerometer.
 
 ## More on $a$, trust in gyro vs. accelerometer
 
-$a$ close to 1.0 means more trust in gyro. Can be smooth, responsive, but difts
+$a$ close to 1.0 means more trust in gyro. Can be smooth, responsive, but drifts
 
-$1 - a$ close to 0.0 means more trust. Can have no drift, but noisy. 
+$1 - a$ close to 0.0 means more trust in accelerometer. Can have no drift, but noisy. 
 
