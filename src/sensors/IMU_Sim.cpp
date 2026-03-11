@@ -8,19 +8,19 @@
 #include <cmath>
 namespace Sensors
 {
-IMU_Sim::IMU_Sim() :
+IMU_Sim::IMU_Sim(double p_alpha) :
     angle(0.0),
     gyro(0.0),
     prev_angular_vel(0.0),
     accel(0.0),
     noise_generator(Noise::instance(0.01)),
-    its_complementary_filter(&Control::Complementary_Filter::instance(0.5))
+    its_complementary_filter(&Control::Complementary_Filter::instance(p_alpha))
 {
 }
 
-IMU_Sim& IMU_Sim::instance()
+IMU_Sim& IMU_Sim::instance(double p_alpha)
 {
-    static IMU_Sim instance;
+    static IMU_Sim instance(p_alpha);
     return instance;
 }
 
@@ -61,6 +61,7 @@ void IMU_Sim::update(double p_angular_velocity, double p_dt)
 
 double IMU_Sim::get_angle() const
 {
+    // in radians
     return angle;
 }
 
