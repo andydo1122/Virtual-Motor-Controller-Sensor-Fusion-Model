@@ -37,8 +37,15 @@ void IMU_Sim::update(double p_angular_velocity, double p_dt)
     tangential_acceleration  = IMU_RADIUS * angular_acceleration;
     centripetal_acceleration = IMU_RADIUS * pow(p_angular_velocity, 2); 
 
+    // Compute Accelerometer reading (what the sensor would ouput)
+    accel = tangential_acceleration 
+        + centripetal_acceleration 
+        + EARTH_GRAVITY 
+        + noise_generator.sample(); 
+
+    // For tilt estimation, remove centripetal acceleration
     // Compute Accelerometer - derived angle
-    double accel_angle = std::atan2(tangential_acceleration + centripetal_acceleration,
+    double accel_angle = std::atan2(tangential_acceleration,
         EARTH_GRAVITY);
 
     // Gyro reading
@@ -50,10 +57,6 @@ void IMU_Sim::update(double p_angular_velocity, double p_dt)
 
     // Integrate angle 
     angle = its_complementary_filter->get_angle();
-    
-    // Compute Accelerometer reading
-    accel = tangential_acceleration + centripetal_acceleration + EARTH_GRAVITY 
-        + noise_generator.sample(); 
 
     // Store prev angular velocity
     prev_angular_vel = p_angular_velocity;
