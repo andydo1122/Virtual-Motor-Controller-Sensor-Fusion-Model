@@ -85,6 +85,9 @@ Next step: need to give IMU_Sim to tune alpha (weight factor) for Complementary 
 
 Since my accelerometer is using centripetal acceleration without dealing 3-axis rotations, my accelerometer angle is corrupted at higher speeds. For now, start with 30 and test results.
 
+## 3/11/26:
+Refining my tilt estimate, I would have to ignore the centripetal acceleration. This dates back to my formula that brought up on March 9th. The previous case back then was similar to rotating a horizontally.
+
 
 
 
