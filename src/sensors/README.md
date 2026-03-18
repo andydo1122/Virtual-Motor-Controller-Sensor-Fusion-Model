@@ -88,6 +88,39 @@ Since my accelerometer is using centripetal acceleration without dealing 3-axis 
 ## 3/11/26:
 Refining my tilt estimate, I would have to ignore the centripetal acceleration. This dates back to my formula that brought up on March 9th. The previous case back then was similar to rotating a horizontally.
 
+## 3/17/26: Considering Accelerometer components on a rotating arm in a vertical plane
+1. Radial (along the arm, pointing outward): 
+
+    $a_r = -gcos(\theta) + rw^2$
+
+    - $-gcos(\theta)$ is the gravity component along the arm.
+
+2. Centripetal Acceleration: 
+
+    $a_{c} = r \cdot w^2$.
+
+3. Tangential (perpendicular to the arm, in the plane of rotation):
+
+    $a_{tan}-gsin(\theta)+ra$
+
+    - $-gsin(\theta)$ is the gravity component perpendicular to the arm. 
+
+4. Tangential Acceleration:
+    $a_{t} = r * a$ 
+
+In addition, a 2-axis accelerometer in that plane would measure $(a_r, a_{tan})$
+
+## Getting $\bold{angle}$ from these components 
+I have to consider what my gravity is at.
+
+If I had no motion, I would only have $a_r = -gcos(\theta)$ and $a_tan = -gsin(\theta)$
+
+Thus, $\theta = atan2(-a_{tan}, -a_r)$
+
+However with motion, the same formulas are contaminated by $rw^2$. But if I'm traveling at low speeds or acceleration, gravity dominates and I can still use the same formula above.
+
+So $\theta_{acc} = atan2(-a_{tan}, -a_r)$ will end up as our true geometric model. Our angle is the orientation of the gravity vector in the sensor frame. 
+
 
 
 

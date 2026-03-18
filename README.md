@@ -57,3 +57,5 @@ A full closed-loop sensor fusion and control system. Here we can see that gyro r
 
 Currently, my simulation is like a bicycle wheel with an IMU taped to the rip.
 
+## 3/17/26
+Focus on making my model from a spinning wheel to a rotating arm.
