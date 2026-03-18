@@ -37,6 +37,9 @@ private:
     double angular_velocity;
     double angular_position;
 
+    // If angle is positive, it is rotating counter 
+    // clockwise in a vertical plane.
+    double angle; // radians, 0 will mean the arm is straight down. 
 };
 
 } // namespace Motor

@@ -28,11 +28,18 @@ public:
     static IMU_Sim& instance(double p_alpha);
 
     // Procedures //
-    void update(double p_angular_velocity, double p_dt);
+
+    // @param p_angle Theta
+    // @param p_angular_velocity Omega (w) 
+    // @param p_dt is Rate of time
+    void update(double p_angle, double p_angular_velocity, double p_dt);
     
     // Getters //
+
     double get_angle() const;
+
     double get_gyro() const;
+
     double get_accel() const; 
 
 private:

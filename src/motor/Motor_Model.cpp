@@ -10,7 +10,8 @@ namespace Motor
 Motor_Model::Motor_Model() :
     voltage_input(0.0),
     angular_velocity(0.0),
-    angular_position(0.0)
+    angular_position(0.0),
+    angle(0.0)
 {
 
 }

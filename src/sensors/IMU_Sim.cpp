@@ -24,14 +24,20 @@ IMU_Sim& IMU_Sim::instance(double p_alpha)
     return instance;
 }
 
-void IMU_Sim::update(double p_angular_velocity, double p_dt)
+void IMU_Sim::update(double p_angle, double p_angular_velocity, double p_dt)
 {
-    double angular_acceleration      = 0.0;
+    double angular_acceleration      = 0.0; 
     double tangential_acceleration   = 0.0;
-    double centripetal_acceleration = 0.0; 
+    double centripetal_acceleration  = 0.0; 
+    double radial                    = 0.0;
+    double tangential                = 0.0;
 
     // Compute angular acceleration
     angular_acceleration     = (p_angular_velocity - prev_angular_vel) / p_dt;
+
+    // Compute Radial and tangential in arm frame
+    radial     = -EARTH_GRAVITY* std::cos(p_angle) + IMU_RADIUS * pow(p_angular_velocity, 2);
+    tangential = -EARTH_GRAVITY* std::sin(p_angle) + IMU_RADIUS * angular_acceleration;
 
     // Compute Tangential and centripetal acceleration
     tangential_acceleration  = IMU_RADIUS * angular_acceleration;
