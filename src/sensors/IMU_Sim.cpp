@@ -35,13 +35,13 @@ void IMU_Sim::update(double p_angle, double p_angular_velocity, double p_dt)
     // Compute angular acceleration
     angular_acceleration     = (p_angular_velocity - prev_angular_vel) / p_dt;
 
-    // Compute Radial and tangential in arm frame
-    radial     = -EARTH_GRAVITY* std::cos(p_angle) + IMU_RADIUS * pow(p_angular_velocity, 2);
-    tangential = -EARTH_GRAVITY* std::sin(p_angle) + IMU_RADIUS * angular_acceleration;
-
     // Compute Tangential and centripetal acceleration
     tangential_acceleration  = IMU_RADIUS * angular_acceleration;
     centripetal_acceleration = IMU_RADIUS * pow(p_angular_velocity, 2); 
+
+    // Compute Radial and tangential in arm frame
+    radial     = -EARTH_GRAVITY* std::cos(p_angle) + centripetal_acceleration;
+    tangential = -EARTH_GRAVITY* std::sin(p_angle) + tangential_acceleration;
 
     // Compute Accelerometer reading (what the sensor would ouput)
     accel = tangential_acceleration 
