@@ -28,23 +28,42 @@ public:
     static IMU_Sim& instance(double p_alpha);
 
     // Procedures //
-    void update(double p_angular_velocity, double p_dt);
+
+    // @param p_angle Theta
+    // @param p_angular_velocity Omega (w) 
+    // @param p_dt is Rate of time
+    void update(double p_angle, double p_angular_velocity, double p_dt);
     
     // Getters //
+
     double get_angle() const;
+
     double get_gyro() const;
+
     double get_accel() const; 
+
+    double get_accel_angle() const;
 
 private:
     // Attributes // 
     static constexpr double IMU_RADIUS    = 0.05; // 5cm from shaft
+    
     static constexpr double EARTH_GRAVITY = 9.81;
+    
     double angle;
+    
     double gyro;
+
     double prev_angular_vel;
+
+    double radial;
+
+    double tangential;
 
     // accelerometer
     double accel;
+    
+    double accel_angle;
 
     Noise noise_generator;
 

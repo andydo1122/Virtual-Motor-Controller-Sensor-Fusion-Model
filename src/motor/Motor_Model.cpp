@@ -1,5 +1,5 @@
 //////////////////////////////////////////////
-// MotorModel.cpp
+// Motor_Model.cpp
 // 
 //////////////////////////////////////////////
 
@@ -53,12 +53,12 @@ void Motor_Model::update(double p_dt)
     angular_position += angular_velocity * p_dt;
 }
 
-double Motor_Model::get_velocity() const
+double Motor_Model::get_angular_velocity() const
 {
     return angular_velocity;
 }
     
-double Motor_Model::get_position() const
+double Motor_Model::get_angle_position() const
 {
     return angular_position;
 }

@@ -1,5 +1,5 @@
 //////////////////////////////////////////////
-// MotorModel.hpp
+// Motor_Model.hpp
 // The motor model will simulate torque and angular acceleration.
 // This integrates our velocity and position and test control loops
 // without hardware.
@@ -25,18 +25,26 @@ public:
     static Motor_Model& instance(); 
 
     // Procedures //
+
+    // @param p_dt delta time
     void update(double p_dt);
+
+    // @param p_voltage Given voltage
     void apply_voltage(double p_voltage);
 
     // Getters //
-    double get_velocity() const;
-    double get_position() const;
+    double get_angular_velocity() const;
+
+    double get_angle_position() const;
 
 private:
     double voltage_input;
+    
     double angular_velocity;
-    double angular_position;
 
+    // If angle is positive, it is rotating counter 
+    // clockwise in a vertical plane.
+    double angular_position; // radians, 0 will mean the arm is straight down.  
 };
 
 } // namespace Motor
