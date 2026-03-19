@@ -42,16 +42,28 @@ public:
 
     double get_accel() const; 
 
+    double get_accel_angle() const;
+
 private:
     // Attributes // 
     static constexpr double IMU_RADIUS    = 0.05; // 5cm from shaft
+    
     static constexpr double EARTH_GRAVITY = 9.81;
+    
     double angle;
+    
     double gyro;
+
     double prev_angular_vel;
+
+    double radial;
+
+    double tangential;
 
     // accelerometer
     double accel;
+    
+    double accel_angle;
 
     Noise noise_generator;
 

@@ -17,32 +17,37 @@ Motor::Motor_Model motor;
 // Trust gyro heavily.
 Sensors::IMU_Sim imu(0.98);
 // Clamp voltage from -12 to 12
-Control::PID       controller(0.5, 0.1, 0.01, -12.0, 12.0); // example gains;
+Control::PID controller(0.5, 0.1, 0.01, -12.0, 12.0); // example gains;
 
 const double DELTA_TIME = 0.001;  // 1 ms, 1000 updates per second
-const double TARGET_SPEED = 30.0; // rad/s
+const double TARGET_SPEED = 10.0; // rad/s
 
 for(int i = 0; i < 5000; ++i)
 {
     // Update motor physics
     motor.update(DELTA_TIME);
 
+    double angle            = motor.get_angle_position();
+    double angular_velocity = motor.get_angular_velocity(); 
     // Update IMU with motor angular velocity
-    imu.update(motor.get_velocity(), DELTA_TIME);
+    imu.update(angle, angular_velocity, DELTA_TIME);
 
     // Read fused angle and gyro
     double fused_angle = imu.get_angle(); // in radians
     double gyro_rate   = imu.get_gyro();
 
     // PID speed control
-    double error = TARGET_SPEED - gyro_rate; 
+    double error = TARGET_SPEED - angular_velocity; 
     double voltage_cmd = controller.update(error, DELTA_TIME); 
 
     motor.apply_voltage(voltage_cmd);
 
     if(i % 200 == 0)
     {
-        std::cout << "time=" << i*DELTA_TIME 
+
+        std::cout << "time=" << i*DELTA_TIME
+                  << " angle=" << angle 
+                  << " Acelerometer angle=" << imu.get_accel_angle()
                   << " current speed= "<< gyro_rate
                   << " fused angle= " << fused_angle
                   << " voltage= " << voltage_cmd
@@ -50,7 +55,7 @@ for(int i = 0; i < 5000; ++i)
     }
 }
 
-std::cout << "Final velocity " << motor.get_velocity() << "\n";
+std::cout << "Final velocity " << motor.get_angular_velocity() << "\n";
 // Testing ---------------
 
 // WHEN EVERYTHING IS IMPLEMENTED...
